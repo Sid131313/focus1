@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Интернет и телевидение — Оренбург</title>
+  <meta name="description" content="Подключение домашнего интернета и телевидения в Оренбурге. Выберите тариф и оставьте заявку на подключение." />
+  <style>
+    :root {
+      --bg-main: linear-gradient(135deg, #7a008d 0%, #a10082 45%, #c4007a 100%);
+      --bg-card: rgba(93, 8, 106, 0.86);
+      --bg-card-2: rgba(126, 29, 91, 0.88);
+      --text-main: #ffb06f;
+      --text-light: #ffd2a8;
+      --accent-lime: #b7df19;
+      --accent-pink: #ff2e93;
+      --accent-orange: #ff9f57;
+      --accent-yellow: #d2dc18;
+      --white: #ffffff;
+      --input-bg: #f0b98f;
+      --shadow: 0 18px 45px rgba(58, 0, 65, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg-main);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    body::before {
+      width: 320px;
+      height: 320px;
+      background: rgba(255, 174, 0, 0.18);
+      top: -80px;
+      left: -80px;
+    }
+
+    body::after {
+      width: 280px;
+      height: 280px;
+      background: rgba(115, 255, 0, 0.14);
+      bottom: -60px;
+      right: -50px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      padding: 26px 0 10px;
+    }
+
+    .header__row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      min-width: 180px;
+    }
+
+    .logo__mark {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--accent-orange);
+      letter-spacing: 0.5px;
+    }
+
+    .logo__mark span:nth-child(1) { color: var(--accent-pink); }
+    .logo__mark span:nth-child(2) { color: var(--accent-orange); }
+    .logo__mark span:nth-child(3) { color: var(--accent-lime); }
+
+    .logo__sub {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--text-light);
+      opacity: 0.95;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      position: relative;
+      transition: 0.25s ease;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 2px;
+      background: var(--accent-lime);
+      transition: width 0.25s ease;
+    }
+
+    .nav a:hover {
+      color: #ffd08c;
+    }
+
+    .nav a:hover::after,
+    .nav a.active::after {
+      width: 100%;
+    }
+
+    .header__contacts {
+      text-align: right;
+      min-width: 210px;
+    }
+
+    .city {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .call-btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ff4d88 0%, #c5bb1b 100%);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    .call-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25);
+    }
+
+    .phone {
+      display: block;
+      margin-top: 10px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .hero {
+      padding: 34px 0 56px;
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .hero__content {
+      padding: 28px 0;
+    }
+
+    .hero__badge {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      color: #ffd7b0;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 22px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero h1 {
+      margin: 0 0 22px;
+      font-size: 64px;
+      line-height: 0.98;
+      color: var(--text-main);
+      font-weight: 900;
+      max-width: 700px;
+    }
+
+    .hero h1 .brand-a {
+      color: var(--accent-pink);
+    }
+
+    .hero h1 .brand-b {
+      color: var(--accent-lime);
+    }
+
+    .hero p {
+      margin: 0 0 28px;
+      color: #ffd0ad;
+      font-size: 30px;
+      line-height: 1.25;
+      font-weight: 700;
+      max-width: 640px;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .btn-main,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      padding: 0 28px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 800;
+      transition: 0.25s ease;
+    }
+
+    .btn-main {
+      background: linear-gradient(135deg, #d6e000 0%, #ffb300 100%);
+      color: #66105d;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.18);
+    }
+
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 32px rgba(0,0,0,0.22);
+    }
+
+    .btn-secondary {
+      border: 2px solid rgba(255,255,255,0.22);
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-2px);
+    }
+
+    .hero__features {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .feature-chip {
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      color: #ffe0bf;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .form-card {
+      position: relative;
+      background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-card-2) 100%);
+      padding: 34px 34px 24px;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.08), transparent 40%),
+        radial-gradient(circle at top right, rgba(183,223,25,0.14), transparent 28%);
+      pointer-events: none;
+    }
+
+    .form-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-card h2 {
+      margin: 0 0 24px;
+      color: var(--text-main);
+      font-size: 34px;
+      line-height: 1.1;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form input {
+      width: 100%;
+      height: 60px;
+      border: none;
+      outline: none;
+      border-radius: 16px;
+      background: var(--input-bg);
+      padding: 0 18px;
+      font-size: 18px;
+      color: #6b3a2b;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .form input::placeholder {
+      color: #875c4f;
+    }
+
+    .form input:focus {
+      box-shadow: 0 0 0 3px rgba(213, 220, 24, 0.28);
+      transform: translateY(-1px);
+    }
+
+    .form button {
+      margin: 8px auto 0;
+      min-width: 170px;
+      height: 54px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff2f8b 0%, #b5d41d 100%);
+      color: white;
+      font-size: 18px;
+      font-weight: 900;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+    }
+
+    .form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px rgba(0,0,0,0.24);
+    }
+
+    .form-note {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.45;
+      color: rgba(255, 218, 198, 0.82);
+    }
+
+    .section {
+      padding: 20px 0 70px;
+    }
+
+    .section-title {
+      margin: 0 0 24px;
+      font-size: 38px;
+      color: #ffd3aa;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .tariffs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .tariff-card {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 26px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 16px 30px rgba(60, 0, 60, 0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .tariff-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 36px rgba(60, 0, 60, 0.24);
+    }
+
+    .tariff-card__name {
+      font-size: 24px;
+      font-weight: 900;
+      color: #fff1de;
+      margin-bottom: 10px;
+    }
+
+    .tariff-card__speed {
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--accent-lime);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .tariff-card__speed span {
+      font-size: 20px;
+      color: #ffe1bc;
+    }
+
+    .tariff-card__price {
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .tariff-card ul {
+      padding-left: 18px;
+      margin: 0 0 20px;
+      color: #ffe2c1;
+      line-height: 1.6;
+    }
+
+    .tariff-card a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 50px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ff9e57 0%, #d4df1b 100%);
+      color: #64105f;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    .footer {
+      padding: 20px 0 40px;
+      color: rgba(255,255,255,0.72);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(183,223,25,0.16);
+      border: 1px solid rgba(183,223,25,0.35);
+      color: #f4ffd0;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .hero h1 {
+        font-size: 54px;
+      }
+
+      .hero p {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .header__row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .header__contacts {
+        text-align: left;
+      }
+
+      .hero__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tariffs {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .header {
+        padding-top: 18px;
+      }
+
+      .hero {
+        padding-top: 18px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero p {
+        font-size: 20px;
+      }
+
+      .hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-main,
+      .btn-secondary {
+        width: 100%;
+      }
+
+      .form-card {
+        padding: 24px 18px 20px;
+      }
+
+      .form-card h2 {
+        font-size: 28px;
+      }
+
+      .form input {
+        height: 54px;
+        font-size: 16px;
+      }
+
+      .section-title {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <div class="header__row">
+        <a href="#" class="logo">
+          <div class="logo__mark">
+            <span>фокус</span><span>лай</span><span>ф</span>
+          </div>
+          <div class="logo__sub">Официальный партнёр</div>
+        </a>
+
+        <nav class="nav">
+          <a href="#" class="active">Главная</a>
+          <a href="#tariffs">Тарифы</a>
+          <a href="#promo">Акции</a>
+          <a href="#about">О нас</a>
+        </nav>
+
+        <div class="header__contacts">
+          <div class="city">Оренбург</div>
+          <a href="#form" class="call-btn">ЗАКАЗАТЬ ЗВОНОК</a>
+          <a href="tel:+79609063175" class="phone">+7 960 906 31-75</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero__grid">
+          <div class="hero__content">
+            <div class="hero__badge">Подключение домашнего интернета и ТВ в Оренбурге</div>
+
+            <h1>
+              Интернет и телевидение
+              от компании
+              <span class="brand-a">ФОКУС</span><span class="brand-b">ЛАЙФ</span>
+            </h1>
+
+            <p>
+              Выберите выгодный тариф, оставьте заявку и подключите интернет
+              для дома быстро и без лишних сложностей
+            </p>
+
+            <div class="hero__actions">
+              <a href="#tariffs" class="btn-main">ПЕРЕЙТИ К ТАРИФАМ</a>
+              <a href="#form" class="btn-secondary">ОСТАВИТЬ ЗАЯВКУ</a>
+            </div>
+
+            <div class="hero__features">
+              <div class="feature-chip">Быстрое подключение</div>
+              <div class="feature-chip">Интернет + ТВ</div>
+              <div class="feature-chip">Подбор тарифа под ваш адрес</div>
+            </div>
+          </div>
+
+          <div class="form-card" id="form">
+            <h2>Заявка на подключение</h2>
+
+            <form class="form" id="leadForm">
+              <input type="text" name="name" placeholder="Имя" required />
+              <input type="tel" name="phone" placeholder="Телефон" required />
+              <input type="text" name="address" placeholder="Адрес подключения" required />
+              <button type="submit">ОТПРАВИТЬ</button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+              Спасибо! Ваша заявка отправлена.
+            </div>
+
+            <div class="form-note">
+              Нажимая кнопку «Отправить», вы соглашаетесь с политикой
+              конфиденциальности и обработкой персональных данных
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tariffs">
+      <div class="container">
+        <h2 class="section-title">Популярные тарифы</h2>
+
+        <div class="tariffs">
+          <div class="tariff-card">
+            <div class="tariff-card__name">Старт</div>
+            <div class="tariff-card__speed">100 <span>Мбит/с</span></div>
+            <div class="tariff-card__price">от 490 ₽/мес</div>
+            <ul>
+              <li>Для серфинга и соцсетей</li>
+              <li>Стабильное подключение</li>
+              <li>Подходит для 1–2 устройств</li>
+            </ul>
+            <a href="#form">Подключить</a>
+          </div>
+
+          <div class="tariff-card">
+            <div class="tariff-card__name">Домашний</div>
+            <div class="tariff-card__speed">300 <span>Мбит/с</span></div>
+            <div class="tariff-card__price">от 690 ₽/мес</div>
+            <ul>
+              <li>Для семьи и Smart TV</li>
+              <li>Просмотр фильмов без задержек</li>
+              <li>Подходит для 3–5 устройств</li>
+            </ul>
+            <a href="#form">Подключить</a>
+          </div>
+
+          <div class="tariff-card">
+            <div class="tariff-card__name">Максимум</div>
+            <div class="tariff-card__speed">500 <span>Мбит/с</span></div>
+            <div class="tariff-card__price">от 890 ₽/мес</div>
+            <ul>
+              <li>Для игр, стримов и работы</li>
+              <li>Высокая скорость и стабильность</li>
+              <li>Подходит для большого дома</li>
+            </ul>
+            <a href="#form">Подключить</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="promo">
+      <div class="container">
+        <h2 class="section-title">Акции и преимущества</h2>
+        <div class="tariffs">
+          <div class="tariff-card">
+            <div class="tariff-card__name">Скидка на подключение</div>
+            <ul>
+              <li>Выгодные условия для новых абонентов</li>
+              <li>Подключение в кратчайшие сроки</li>
+              <li>Консультация по подбору тарифа</li>
+            </ul>
+          </div>
+
+          <div class="tariff-card">
+            <div class="tariff-card__name">ТВ + Интернет</div>
+            <ul>
+              <li>Удобный пакет услуг для дома</li>
+              <li>Меньше расходов при подключении пакета</li>
+              <li>Хороший вариант для семьи</li>
+            </ul>
+          </div>
+
+          <div class="tariff-card">
+            <div class="tariff-card__name">Подключение по адресу</div>
+            <ul>
+              <li>Проверим техническую возможность</li>
+              <li>Подскажем доступные тарифы</li>
+              <li>Быстро перезвоним после заявки</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">О компании</h2>
+        <div class="tariff-card" style="max-width: 900px; margin: 0 auto;">
+          <div class="tariff-card__name">Надёжное подключение для дома</div>
+          <ul style="margin-bottom: 0;">
+            <li>Помогаем подобрать тариф интернета и телевидения под ваши задачи.</li>
+            <li>Принимаем заявки на подключение и консультируем по доступности услуг по адресу.</li>
+            <li>Сайт выполнен в ярком фирменном стиле и адаптирован под мобильные устройства.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 ФокусЛайф — интернет и телевидение в Оренбурге
+    </div>
+  </footer>
+
+  <script>
+    const leadForm = document.getElementById('leadForm');
+    const successMessage = document.getElementById('successMessage');
+
+    leadForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(leadForm);
+      const name = formData.get('name')?.trim();
+      const phone = formData.get('phone')?.trim();
+      const address = formData.get('address')?.trim();
+
+      if (!name || !phone || !address) {
+        alert('Пожалуйста, заполните все поля');
+        return;
+      }
+
+      successMessage.style.display = 'block';
+      leadForm.reset();
+
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 4000);
+    });
+  </script>
+</body>
+</html>

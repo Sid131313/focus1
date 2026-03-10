@@ -1,0 +1,92 @@
+
+    const body = document.body;
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.panel');
+    const modals = document.querySelectorAll('.modal');
+    const menuToggle = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(item => item.classList.remove('active'));
+        panels.forEach(panel => panel.classList.remove('active'));
+        tab.classList.add('active');
+        const target = document.querySelector(`[data-panel="${tab.dataset.tab}"]`);
+        if (target) target.classList.add('active');
+      });
+    });
+
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modal) {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      if (![...modals].some(item => item.classList.contains('open'))) {
+        body.style.overflow = '';
+      }
+    }
+
+    document.querySelectorAll('.js-open-modal').forEach(button => {
+      button.addEventListener('click', () => {
+        const target = button.dataset.target;
+        const tariff = button.dataset.tariff || '';
+        if (target === 'connectModal') {
+          document.querySelectorAll('.js-tariff-input').forEach(input => {
+            input.value = tariff;
+          });
+        }
+        openModal(target);
+      });
+    });
+
+    document.querySelectorAll('.js-close-modal').forEach(button => {
+      button.addEventListener('click', () => {
+        const modal = button.closest('.modal');
+        if (modal) closeModal(modal);
+      });
+    });
+
+    modals.forEach(modal => {
+      modal.addEventListener('click', event => {
+        if (event.target === modal) closeModal(modal);
+      });
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        modals.forEach(modal => closeModal(modal));
+      }
+    });
+
+    document.querySelectorAll('.js-details').forEach(button => {
+      button.addEventListener('click', () => {
+        document.getElementById('detailsTitle').textContent = button.dataset.title || 'Подробнее';
+        document.getElementById('detailsContent').textContent = button.dataset.content || '';
+        openModal('detailsModal');
+      });
+    });
+
+    document.querySelectorAll('.js-lead-form').forEach(form => {
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        form.reset();
+        modals.forEach(modal => closeModal(modal));
+        openModal('successModal');
+      });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', () => {
+        mobilePanel.classList.remove('open');
+      });
+    });
+
+    menuToggle?.addEventListener('click', () => {
+      mobilePanel.classList.toggle('open');
+    });
