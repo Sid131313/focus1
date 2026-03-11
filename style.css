@@ -720,6 +720,9 @@
       border-top: 1px solid var(--border);
       padding-top: 18px;
     }
+    .logo__footer {
+      max-width: 150px;
+    }
 
     .callout {
       display: inline-flex;
