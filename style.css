@@ -92,7 +92,7 @@
       flex-direction: column;
       align-items: center;
       gap: 5px;
-      min-width: 0;
+      min-width: 130px;
     }
 
 
@@ -220,7 +220,7 @@
       content: "";
     }
 
-    .menu-toggle span { margin: 6px auto; }
+    .menu-toggle span { margin: 7px auto; }
 
     .hero {
       padding: 34px 0 24px;
@@ -287,7 +287,7 @@
     h1, h2, h3, h4, p { margin: 0; }
     h1 {
       font-size: clamp(34px, 5vw, 47px);
-      line-height: 1.04;
+      line-height: 1.15;
       margin-bottom: 16px;
     }
 
@@ -482,7 +482,7 @@
       margin-bottom: 22px;
     }
 
-    .section-head p { color: var(--muted); max-width: 700px; }
+    .section-head p { color: var(--muted);}
     .section-head h2 { font-size: clamp(28px, 3vw, 42px); }
 
     .tabs {
@@ -493,12 +493,14 @@
     }
 
     .tab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 12px 18px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--muted);
-      cursor: pointer;
       font-weight: 800;
     }
 
@@ -509,8 +511,19 @@
       box-shadow: 0 12px 24px rgba(0,0,0,.2);
     }
 
-    .panel { display: none; }
-    .panel.active { display: block; }
+    .panel {
+      display: block;
+      scroll-margin-top: 110px;
+    }
+
+    .panel + .panel {
+      margin-top: 28px;
+    }
+
+    .panel-title {
+      margin: 26px 0 14px;
+      font-size: clamp(24px, 2.4vw, 34px);
+    }
 
     .cards {
       display: grid;
@@ -557,6 +570,7 @@
       font-weight: 800;
       background: rgba(255,255,255,0.12);
       color: var(--primary);
+      white-space: nowrap;
     }
 
     .tariff-title {
@@ -627,7 +641,7 @@
 
     .card-actions .ghost-button,
     .card-actions .button {
-      flex: 1 1 180px;
+      flex: 1 1 50px;
       padding-block: 13px;
     }
 
@@ -654,6 +668,19 @@
       border: 1px solid var(--border);
       position: relative;
       overflow: hidden;
+    }
+    .router {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+    }
+    .router-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      padding: 8px;
     }
     .tvbox{
       display: flex;
@@ -684,6 +711,55 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
+    }
+
+    .faq-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .faq-item {
+      padding: 22px;
+    }
+
+    .faq-item summary {
+      position: relative;
+      list-style: none;
+      padding-right: 36px;
+      font-size: 22px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.12);
+      color: var(--accent);
+      font-size: 20px;
+      line-height: 1;
+      transition: transform .2s ease;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      margin-top: 14px;
+      color: var(--muted);
     }
 
     .footer {
@@ -789,11 +865,39 @@
       font-weight: 900;
     }
 
+    .mobile-form-anchor {
+      display: none;
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--accent), var(--danger));
+      color: #66105d;
+      box-shadow: 0 18px 34px rgba(58, 0, 65, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      z-index: 40;
+    }
+
+    .mobile-form-anchor span {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .mobile-form-anchor.is-visible {
+      display: inline-flex;
+    }
+
     @media (max-width: 1080px) {
       .hero-grid,
       .promo-card,
       .cards,
       .adv-grid,
+      .faq-grid,
       .grid-2 { grid-template-columns: 1fr; }
       .promo-price { text-align: left; }
       .equipment-card { grid-template-columns: 1fr; }
@@ -801,11 +905,22 @@
 
     @media (max-width: 900px) {
       .nav,
-      .topbar-actions .city-pill,
-      .topbar-actions .ghost-button,
-      .topbar-actions .callout { display: none; }
-      .menu-toggle { display: inline-grid; place-items: center; }
+      .topbar-actions .city-pill { display: none; }
+      .menu-toggle { display: inline-grid; place-items: center; align-content: center; }
       .topbar-inner { min-height: 74px; }
+      .topbar-actions {
+        margin-left: auto;
+        gap: 10px;
+      }
+      .topbar-actions .callout,
+      .topbar-actions .ghost-button {
+        display: inline-flex;
+      }
+      .topbar-actions .callout { font-size: 14px; }
+      .topbar-actions .ghost-button {
+        padding: 10px 14px;
+        font-size: 14px;
+      }
       .mobile-panel {
         display: none;
         padding: 0 0 18px;
@@ -827,13 +942,16 @@
         color: var(--text);
         justify-content: flex-start;
       }
+      .mobile-nav .callout,
+      .mobile-nav .ghost-button { display: none; }
       .hero-card,
       .form-card,
       .promo-card,
       .footer-card,
       .tariff-card,
       .equipment-card,
-      .adv-card { border-radius: 22px; }
+      .adv-card,
+      .faq-item { border-radius: 22px; }
     }
 
     @media (min-width: 901px) {
@@ -843,6 +961,36 @@
     @media (max-width: 640px) {
       .container { width: min(calc(100% - 20px), var(--container)); }
       .hero { padding-top: 18px; }
+      .topbar-inner {
+        gap: 12px;
+        
+        align-items: center;
+      }
+      
+      .topbar-actions {
+        flex: 1 1 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+          "button menu"
+          "callout menu";
+        align-items: start;
+        column-gap: 10px;
+        row-gap: 8px;
+      }
+      .topbar-actions .ghost-button {
+        grid-area: button;
+        width: auto;
+        justify-self: center;
+      }
+      .topbar-actions .callout {
+        grid-area: callout;
+        align-self: start;
+        justify-self: center;
+      }
+      .topbar-actions .menu-toggle {
+        grid-area: menu;
+      }
       .hero-card,
       .form-card,
       .promo-card,
@@ -850,6 +998,7 @@
       .tariff-card,
       .equipment-card,
       .adv-card,
+      .faq-item,
       .modal-card { padding: 20px; }
       .stats { grid-template-columns: 1fr; }
       .section-head { align-items: start; }
@@ -859,4 +1008,9 @@
       .ghost-button { width: 100%; }
       .price { font-size: 30px; }
       .brand strong { font-size: 16px; }
+      .router-img { padding: 12px; }
+      .faq-item summary {
+        font-size: 19px;
+        padding-right: 32px;
+      }
     }

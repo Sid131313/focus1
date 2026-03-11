@@ -53,7 +53,6 @@
             <a href="#tariffs">Тарифы</a>
             <a href="#equipment">Оборудование</a>
             <a href="#advantages">О нас</a>
-            <div class="callout">Оренбург</div>
             <a class="callout" href="tel:+79609063175">+7 960 906 31-75</a>
             <button
               class="ghost-button js-open-modal"
@@ -71,24 +70,22 @@
         <div class="container">
           <div class="hero-grid">
             <div class="hero-card">
-              <div class="eyebrow">
-                Интернет и телевидение от компании ФОКУСЛАЙФ
-              </div>
-              <h1>Подключите интернет и ТВ для дома</h1>
+              
+              <h1>Подключите интернет и ТВ для дома от компании ФОКУСЛАЙФ</h1>
               <p class="hero-subtitle">
                 Выберите тариф, оставьте заявку на подключение и получите
                 быстрый интернет, цифровое телевидение и помощь с настройкой
                 оборудования.
               </p>
 
-              <div class="hero-points">
+              <div class="hero-points" >
                 <div class="chip">До 1000 Мбит/с</div>
                 <div class="chip">До 240 каналов</div>
                 <div class="chip">Подключение и настройка бесплатно</div>
               </div>
             </div>
 
-            <aside class="form-card">
+            <aside class="form-card" id="form-card">
               <div class="form-card-header">
                 <div class="eyebrow">Быстрая заявка</div>
                 <p>
@@ -167,14 +164,15 @@
             </div>
           </div>
 
-          <div class="tabs" role="tablist" aria-label="Категории тарифов">
-            <button class="tab active" data-tab="bundle">Интернет + ТВ</button>
-            <button class="tab" data-tab="internet">Интернет</button>
-            <button class="tab" data-tab="tv">Цифровое ТВ</button>
-            <button class="tab" data-tab="private">Частный сектор</button>
+          <div class="tabs" aria-label="Категории тарифов">
+            <a class="tab" href="#tariffs-bundle">Интернет + ТВ</a>
+            <a class="tab" href="#tariffs-internet">Интернет</a>
+            <a class="tab" href="#tariffs-tv">Цифровое ТВ</a>
+            <a class="tab" href="#tariffs-private">Частный сектор</a>
           </div>
 
-          <div class="panel active" data-panel="bundle">
+          <h2 class="panel-title">Интернет + ТВ</h2>
+          <div class="panel" id="tariffs-bundle">
             <div class="cards">
               <article class="tariff-card section-card">
                 <div class="tariff-top">
@@ -267,7 +265,8 @@
             </div>
           </div>
 
-          <div class="panel" data-panel="internet">
+          <h2 class="panel-title">Интернет</h2>
+          <div class="panel" id="tariffs-internet">
             <div class="cards">
               <article class="tariff-card section-card">
                 <div class="tariff-top">
@@ -356,7 +355,8 @@
             </div>
           </div>
 
-          <div class="panel" data-panel="tv">
+          <h2 class="panel-title">Цифровое ТВ</h2>
+          <div class="panel" id="tariffs-tv">
             <div class="cards">
               <article class="tariff-card section-card">
                 <div class="tariff-top">
@@ -388,7 +388,8 @@
             </div>
           </div>
 
-          <div class="panel" data-panel="private">
+          <h2 class="panel-title">Частный сектор</h2>
+          <div class="panel" id="tariffs-private">
             <div class="cards">
               <article class="tariff-card section-card">
                 <div class="tariff-top">
@@ -602,6 +603,72 @@
           </div>
         </div>
       </section>
+
+      <section id="faq">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Вопросы и ответы</h2>
+              <p>
+                Ответили на частые вопросы о подключении, сроках установки,
+                оборудовании и оплате услуг.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-grid">
+            <details class="faq-item section-card" open>
+              <summary>Как быстро можно подключить интернет?</summary>
+              <p>
+                После заявки менеджер уточнит адрес и согласует удобное время.
+                Обычно подключение возможно в ближайшие 1-3 дня.
+              </p>
+            </details>
+
+            <details class="faq-item section-card">
+              <summary>Можно ли подключить только интернет без ТВ?</summary>
+              <p>
+                Да, на странице есть отдельные тарифы только с домашним
+                интернетом без телевидения. Менеджер поможет выбрать подходящий
+                вариант.
+              </p>
+            </details>
+
+            <details class="faq-item section-card">
+              <summary>Нужно ли покупать роутер и приставку?</summary>
+              <p>
+                Не обязательно. Оборудование можно купить или взять в аренду,
+                в зависимости от выбранного тарифа и ваших задач.
+              </p>
+            </details>
+
+            <details class="faq-item section-card">
+              <summary>Как узнать, доступно ли подключение по моему адресу?</summary>
+              <p>
+                Оставьте заявку с адресом подключения. Мы проверим техническую
+                возможность и свяжемся с вами для подтверждения.
+              </p>
+            </details>
+
+            <details class="faq-item section-card">
+              <summary>Есть ли акции для новых абонентов?</summary>
+              <p>
+                Да, часть тарифов подключается по акционной цене. Актуальные
+                предложения указаны в карточках тарифов и уточняются при
+                оформлении заявки.
+              </p>
+            </details>
+
+            <details class="faq-item section-card">
+              <summary>Как оплачивать услуги после подключения?</summary>
+              <p>
+                После активации тарифа вы сможете оплачивать услуги ежемесячно.
+                Способ оплаты и дату списания менеджер сообщит при подключении.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">
@@ -749,6 +816,16 @@
         </div>
       </div>
     </div>
+
+    <a
+      class="mobile-form-anchor"
+      href="#form-card"
+      aria-label="Перейти к форме"
+      title="Перейти к форме"
+    >
+      <span aria-hidden="true"> <img src="img/up-chevron-svgrepo-com.svg" alt=""></span>
+    </a>
+
     <script src="script.js"></script>
   </body>
 </html>

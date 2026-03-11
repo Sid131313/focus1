@@ -1,20 +1,10 @@
 
     const body = document.body;
-    const tabs = document.querySelectorAll('.tab');
-    const panels = document.querySelectorAll('.panel');
     const modals = document.querySelectorAll('.modal');
     const menuToggle = document.getElementById('menuToggle');
     const mobilePanel = document.getElementById('mobilePanel');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(item => item.classList.remove('active'));
-        panels.forEach(panel => panel.classList.remove('active'));
-        tab.classList.add('active');
-        const target = document.querySelector(`[data-panel="${tab.dataset.tab}"]`);
-        if (target) target.classList.add('active');
-      });
-    });
+    const mobileFormAnchor = document.querySelector('.mobile-form-anchor');
+    const promoCopy = document.querySelector('.promo-copy');
 
     function openModal(id) {
       const modal = document.getElementById(id);
@@ -90,3 +80,17 @@
     menuToggle?.addEventListener('click', () => {
       mobilePanel.classList.toggle('open');
     });
+
+    function updateMobileFormAnchor() {
+      if (!mobileFormAnchor || !promoCopy) return;
+
+      const isMobile = window.matchMedia('(max-width: 640px)').matches;
+      const promoBottom = promoCopy.getBoundingClientRect().bottom;
+      const shouldShow = isMobile && promoBottom <= 0;
+
+      mobileFormAnchor.classList.toggle('is-visible', shouldShow);
+    }
+
+    updateMobileFormAnchor();
+    window.addEventListener('scroll', updateMobileFormAnchor, { passive: true });
+    window.addEventListener('resize', updateMobileFormAnchor);
